@@ -1,0 +1,272 @@
+import os
+import json
+import threading
+import time
+
+# Default camera settings
+IP_CAMERA_URL = "http://100.126.190.41:8080"  # Updated default to match settings.json
+SNAPSHOT_PATH = "/shot.jpg"
+VIDEO_PATH = "/video"
+MJPEG_PATH = "/videofeed"
+CAMERA_ENABLED = True
+
+# Camera position and view settings
+camera_position = {
+    'height': 120,  # cm from ground
+    'angle': 45,    # degrees downward tilt
+    'direction': 'forward'
+}
+
+camera_view = {
+    'rotation': 0,
+    'flip_horizontal': False,
+    'flip_vertical': False,
+    'quality': 'high'
+}
+
+# Try to import requests, with fallback
+try:
+    import requests
+    REQUESTS_AVAILABLE = True
+except ImportError:
+    REQUESTS_AVAILABLE = False
+    print("Warning: requests module not found. Camera functionality will be limited.")
+    print("Install with: sudo pip3 install requests")
+
+# Load settings if available
+try:
+    config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config', 'settings.json')
+    if os.path.exists(config_path):
+        with open(config_path, 'r') as f:
+            settings = json.load(f)
+        
+        # Update camera settings from config
+        camera_settings = settings.get('camera', {})
+        IP_CAMERA_URL = camera_settings.get('ip_camera_url', IP_CAMERA_URL)
+        SNAPSHOT_PATH = camera_settings.get('snapshot_path', SNAPSHOT_PATH)
+        VIDEO_PATH = camera_settings.get('video_path', VIDEO_PATH)
+        MJPEG_PATH = camera_settings.get('mjpeg_path', MJPEG_PATH)
+        CAMERA_ENABLED = camera_settings.get('enabled', CAMERA_ENABLED)
+        
+        # Update position and view settings
+        if 'position' in camera_settings:
+            camera_position.update(camera_settings['position'])
+        if 'view_settings' in camera_settings:
+            camera_view.update(camera_settings['view_settings'])
+        
+        print(f"Loaded camera URL from settings: {IP_CAMERA_URL}")
+except Exception as e:
+    print(f"Error loading camera settings: {e}")
+
+# Camera availability cache
+camera_available = None
+last_check_time = 0
+check_interval = 10  # seconds
+camera_lock = threading.Lock()
+
+def get_snapshot_url():
+    """Get the URL for still images."""
+    return f"{IP_CAMERA_URL}{SNAPSHOT_PATH}"
+
+def get_video_url():
+    """Get the URL for video stream."""
+    return f"{IP_CAMERA_URL}{VIDEO_PATH}"
+
+def get_mjpeg_url():
+    """Get the URL for MJPEG stream."""
+    return f"{IP_CAMERA_URL}{MJPEG_PATH}"
+
+def is_camera_available():
+    """Check if the IP camera is accessible."""
+    global camera_available, last_check_time
+    
+    # If not enabled, always return False
+    if not CAMERA_ENABLED:
+        return False
+    
+    # If requests module is not available, can't check
+    if not REQUESTS_AVAILABLE:
+        return False
+    
+    # Use cached result if checked recently
+    current_time = time.time()
+    with camera_lock:
+        if camera_available is not None and current_time - last_check_time < check_interval:
+            return camera_available
+    
+    # Check camera availability
+    try:
+        response = requests.get(get_snapshot_url(), timeout=2)
+        available = response.status_code == 200
+        
+        # Update cache
+        with camera_lock:
+            camera_available = available
+            last_check_time = current_time
+            
+        return available
+    except Exception as e:
+        print(f"Camera connection error: {e}")
+        # Update cache
+        with camera_lock:
+            camera_available = False
+            last_check_time = current_time
+            
+        return False
+
+def get_still_image_bytes():
+    """Get a still image from the camera as bytes."""
+    if not is_camera_available() or not REQUESTS_AVAILABLE:
+        return None
+    
+    try:
+        response = requests.get(get_snapshot_url(), timeout=5)
+        if response.status_code == 200:
+            return response.content
+        return None
+    except:
+        return None
+
+def save_snapshot(file_path):
+    """Save a snapshot to a file."""
+    if not is_camera_available() or not REQUESTS_AVAILABLE:
+        return False, "Camera not available"
+    
+    try:
+        image_data = get_still_image_bytes()
+        if not image_data:
+            return False, "Failed to get image from camera"
+        
+        with open(file_path, 'wb') as f:
+            f.write(image_data)
+            
+        return True, f"Snapshot saved to {file_path}"
+    except Exception as e:
+        return False, f"Error saving snapshot: {e}"
+
+def get_camera_info():
+    """Get information about the camera status."""
+    info = {
+        "enabled": CAMERA_ENABLED,
+        "available": is_camera_available(),
+        "url": IP_CAMERA_URL,
+        "snapshot_url": get_snapshot_url(),
+        "video_url": get_video_url(),
+        "mjpeg_url": get_mjpeg_url()
+    }
+    return info
+
+def update_camera_url(new_url):
+    """Update the camera URL and save it to the settings file.
+    
+    Args:
+        new_url (str): The new camera URL to use
+        
+    Returns:
+        tuple: (success, message)
+    """
+    global IP_CAMERA_URL, camera_available, last_check_time
+    
+    if not new_url:
+        return False, "No URL provided"
+    
+    try:
+        # Update the global variable
+        IP_CAMERA_URL = new_url.rstrip('/')
+        
+        # Reset camera availability cache
+        with camera_lock:
+            camera_available = None
+            last_check_time = 0
+        
+        # Load current settings
+        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config', 'settings.json')
+        with open(config_path, 'r') as f:
+            settings = json.load(f)
+        
+        # Update camera URL in settings
+        if 'camera' not in settings:
+            settings['camera'] = {}
+        settings['camera']['ip_camera_url'] = IP_CAMERA_URL
+        
+        # Save settings
+        with open(config_path, 'w') as f:
+            json.dump(settings, f, indent=2)
+        
+        print(f"Camera URL updated to: {IP_CAMERA_URL}")
+        return True, "Camera URL updated successfully"
+    except Exception as e:
+        print(f"Error updating camera URL: {e}")
+        return False, str(e)
+
+def apply_camera_settings():
+    """Apply camera position and view settings from config"""
+    global camera_position, camera_view, IP_CAMERA_URL
+    
+    try:
+        config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config', 'settings.json')
+        if os.path.exists(config_path):
+            with open(config_path, 'r') as f:
+                settings = json.load(f)
+            
+            # Update camera settings from config
+            camera_settings = settings.get('camera', {})
+            IP_CAMERA_URL = camera_settings.get('ip_camera_url', IP_CAMERA_URL)
+            
+            # Update position and view settings
+            if 'position' in camera_settings:
+                camera_position.update(camera_settings['position'])
+            if 'view_settings' in camera_settings:
+                camera_view.update(camera_settings['view_settings'])
+                
+            # Apply camera transformations if connected
+            if REQUESTS_AVAILABLE:
+                try:
+                    # Apply rotation
+                    if camera_view['rotation']:
+                        requests.get(f"{IP_CAMERA_URL}/settings/rotation?set={camera_view['rotation']}")
+                    
+                    # Apply flips
+                    if camera_view['flip_horizontal']:
+                        requests.get(f"{IP_CAMERA_URL}/settings/flip_h?set=1")
+                    if camera_view['flip_vertical']:
+                        requests.get(f"{IP_CAMERA_URL}/settings/flip_v?set=1")
+                    
+                    # Apply quality
+                    if camera_view['quality'] == 'high':
+                        requests.get(f"{IP_CAMERA_URL}/settings/quality?set=100")
+                    elif camera_view['quality'] == 'medium':
+                        requests.get(f"{IP_CAMERA_URL}/settings/quality?set=80")
+                    elif camera_view['quality'] == 'low':
+                        requests.get(f"{IP_CAMERA_URL}/settings/quality?set=60")
+                        
+                except Exception as e:
+                    print(f"Error applying camera settings: {e}")
+                    
+    except Exception as e:
+        print(f"Error loading camera settings: {e}")
+
+# Apply settings on module load
+apply_camera_settings()
+
+if __name__ == "__main__":
+    # Test camera connection
+    print("Camera Module Test")
+    print(f"Camera enabled: {CAMERA_ENABLED}")
+    print(f"Camera URL: {IP_CAMERA_URL}")
+    
+    if is_camera_available():
+        print("Camera is available!")
+        print(f"Snapshot URL: {get_snapshot_url()}")
+        print(f"Video URL: {get_video_url()}")
+        print(f"MJPEG URL: {get_mjpeg_url()}")
+        
+        # Try to save an image
+        import os
+        test_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'test_snapshot.jpg')
+        os.makedirs(os.path.dirname(test_path), exist_ok=True)
+        success, message = save_snapshot(test_path)
+        print(message)
+    else:
+        print("Camera is not available.")
+        print(f"Make sure your IP Webcam app is running at {IP_CAMERA_URL}")

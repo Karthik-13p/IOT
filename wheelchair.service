@@ -1,0 +1,17 @@
+[Unit]
+Description=Smart Wheelchair Control System
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/pi/pi-motor-control-project
+ExecStart=/bin/bash /home/pi/pi-motor-control-project/start_service.sh
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wheelchair
+
+[Install]
+WantedBy=multi-user.target

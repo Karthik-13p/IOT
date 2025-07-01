@@ -1,0 +1,38 @@
+import RPi.GPIO as GPIO
+import time
+
+# GPIO pin assignments for the distance sensor
+TRIG_PIN = 18  # GPIO pin for Trigger
+ECHO_PIN = 17  # GPIO pin for Echo
+
+def setup_distance_sensor():
+    """Set up the GPIO pins for the distance sensor."""
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(TRIG_PIN, GPIO.OUT)
+    GPIO.setup(ECHO_PIN, GPIO.IN)
+
+def read_distance():
+    """Measure the distance using the ultrasonic sensor."""
+    # Send a 10us pulse to trigger the sensor
+    GPIO.output(TRIG_PIN, True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG_PIN, False)
+
+    # Wait for the echo to start
+    while GPIO.input(ECHO_PIN) == 0:
+        pulse_start = time.time()
+
+    # Wait for the echo to end
+    while GPIO.input(ECHO_PIN) == 1:
+        pulse_end = time.time()
+
+    # Calculate the distance
+    pulse_duration = pulse_end - pulse_start
+    distance = pulse_duration * 17150  # Convert to centimeters
+    distance = round(distance, 2)  # Round to 2 decimal places
+
+    return distance
+
+def cleanup_distance_sensor():
+    """Clean up the GPIO settings for the distance sensor."""
+    GPIO.cleanup()

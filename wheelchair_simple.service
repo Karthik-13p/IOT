@@ -1,0 +1,17 @@
+[Unit]
+Description=Smart Wheelchair Control System
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/pi/pi-motor-control-project
+ExecStart=/home/pi/pi-motor-control-project/.venv/bin/python /home/pi/pi-motor-control-project/src/main.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wheelchair
+
+[Install]
+WantedBy=multi-user.target

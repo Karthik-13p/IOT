@@ -1,0 +1,66 @@
+{
+  "ultrasonic_sensor": {
+    "trigger_pin": 18,
+    "echo_pin": 17,
+    "max_distance": 400
+  },
+  "gpio_pins": {
+    "motor1_pwm": 12,
+    "motor1_in1": 23,
+    "motor1_in2": 24,
+    "motor2_pwm": 13,
+    "motor2_in1": 27,
+    "motor2_in2": 22
+  },
+  "pwm_frequency": 1000,
+  "motor_speed_limits": {
+    "min_speed": -100,
+    "max_speed": 100
+  },
+  "motor_configuration": {
+    "type": "paired",
+    "left_motors": [1],
+    "right_motors": [2]
+  },
+  "camera": {
+    "type": "ip_camera",
+    "ip_camera_url": "http://192.168.1.3:8080",
+    "snapshot_path": "/shot.jpg",
+    "video_path": "/video",
+    "mjpeg_path": "/videofeed",
+    "capture_interval": 5,
+    "enabled": true,
+    "position": {
+      "height": 120,
+      "angle": 45,
+      "direction": "forward"
+    },
+    "view_settings": {
+      "rotation": 0,
+      "flip_horizontal": false,
+      "flip_vertical": false,
+      "quality": "high"
+    }
+  },
+  "gps": {
+    "port": "/dev/ttyS0",
+    "baud_rate": 9600,
+    "timeout": 1,
+    "update_interval": 5,
+    "enabled": true
+  },
+
+  "obstacle_detection": {
+    "danger_threshold": 25,
+    "warning_threshold": 50,
+    "caution_threshold": 100,
+    "check_interval": 0.2,
+    "auto_stop_enabled": true
+  },
+  "web_interface": {
+    "port": 5001,
+    "host": "0.0.0.0",
+    "debug": false,
+    "refresh_interval": 500
+  }
+}

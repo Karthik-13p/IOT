@@ -1,0 +1,123 @@
+import motor_control.pi_to_motor as motor
+import sensors.distance_sensor as distance_sensor
+import navigation.obstacle_avoidance as obstacle_avoidance
+import time
+import threading
+import argparse
+import signal
+import sys
+import os
+
+# Import Flask app
+try:
+    from web.app import app
+    WEB_INTERFACE_AVAILABLE = True
+except ImportError:
+    print("Web interface modules not available. Web server will be disabled.")
+    WEB_INTERFACE_AVAILABLE = False
+
+# Global flag to control the main loop
+running = True
+
+def signal_handler(sig, frame):
+    """Handle Ctrl+C gracefully"""
+    global running
+    print("\nShutting down gracefully...")
+    running = False
+
+def autonomous_mode():
+    """Run the robot in autonomous obstacle avoidance mode"""
+    print("Starting autonomous mode...")
+    
+    while running:
+        # Check for obstacles
+        if obstacle_avoidance.is_obstacle_detected():
+            motor.stop()
+            print("Obstacle detected! Stopping.")
+            time.sleep(0.5)
+            # Back up slightly
+            motor.move_backward(speed=50)
+            time.sleep(0.5)
+            # Turn randomly
+            if time.time() % 2 == 0:  # Simple way to choose randomly
+                motor.turn_left(speed=50)
+            else:
+                motor.turn_right(speed=50)
+            time.sleep(0.7)
+        else:
+            motor.move_forward(speed=50)
+            # Uncomment for less verbose output
+            # print("Moving forward...")
+            time.sleep(0.1)
+
+def start_web_server(host='0.0.0.0', port=5000, debug=False):
+    """Start the Flask web server"""
+    if WEB_INTERFACE_AVAILABLE:
+        print(f"Starting web interface at http://{host}:{port}")
+        # Use threaded=True to allow the Flask app to run in the background
+        app.run(host=host, port=port, debug=debug, threaded=True, use_reloader=False)
+    else:
+        print("Web interface not available. Please install required packages.")
+
+def main():
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='Pi Motor Control Project')
+    parser.add_argument('--no-autonomous', action='store_true', 
+                      help='Disable autonomous mode')
+    parser.add_argument('--no-web', action='store_true', 
+                      help='Disable web interface')
+    parser.add_argument('--port', type=int, default=5000, 
+                      help='Port for web interface (default: 5000)')
+    parser.add_argument('--debug', action='store_true', 
+                      help='Enable debug mode for web interface')
+    args = parser.parse_args()
+    
+    # Set up signal handlers for graceful shutdown
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+    
+    global running
+    running = True
+    
+    # Initialize motors
+    if not motor.initialize_motors():
+        print("Failed to initialize motors.")
+        return
+    
+    # Setup distance sensor
+    distance_sensor.setup_distance_sensor()
+    
+    print("Hardware initialized successfully")
+    
+    try:
+        # Start the web interface in a separate thread if enabled
+        web_thread = None
+        if WEB_INTERFACE_AVAILABLE and not args.no_web:
+            web_thread = threading.Thread(
+                target=start_web_server,
+                kwargs={'port': args.port, 'debug': args.debug}
+            )
+            web_thread.daemon = True  # Thread will exit when main program exits
+            web_thread.start()
+        
+        # Run autonomous mode in the main thread if enabled
+        if not args.no_autonomous:
+            autonomous_mode()
+        else:
+            # If autonomous mode is disabled but web interface is enabled,
+            # keep the main thread alive
+            while running and (web_thread and web_thread.is_alive()):
+                time.sleep(1)
+        
+    except Exception as e:
+        print(f"Error occurred: {e}")
+    finally:
+        # Clean up resources
+        running = False
+        print("Cleaning up resources...")
+        motor.cleanup_motors()
+        distance_sensor.cleanup_distance_sensor()
+        print("Cleanup complete. Exiting.")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wheelchair Camera Stream</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .stream-container {
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .stream-options {
+            margin: 20px 0;
+        }
+        .video-stream {
+            max-width: 100%;
+            width: 640px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background-color: #000;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        .connection-error {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .stream-info {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .control-buttons {
+            margin-top: 20px;
+        }
+        .btn-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 24px;
+            line-height: 1;
+            margin: 0 5px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Wheelchair Camera</h2>
+            <a href="/" class="btn btn-primary">Back to Dashboard</a>
+        </div>
+        
+        <!-- Camera stream container -->
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Camera Stream</h5>
+                            <span id="connection-badge" class="badge bg-secondary">Connecting...</span>
+                        </div>
+                        <div class="card-body stream-container p-0">
+                            <div id="camera-feed">
+                                <img id="stream-image" src="/api/camera/stream" alt="Camera Stream" class="img-fluid">
+                            </div>
+                            
+                            <div id="connection-error" class="alert alert-warning m-3 d-none">
+                                <h4>Camera Not Available</h4>
+                                <p>Make sure your IP Webcam app is running and accessible from this device.</p>
+                                
+                                <div class="mt-3">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Address:</span>
+                                        <input type="text" id="camera-ip" class="form-control" 
+                                               placeholder="IP address (e.g., 192.168.1.100)">
+                                        <span class="input-group-text">:</span>
+                                        <input type="text" id="camera-port" class="form-control" value="8080" 
+                                               placeholder="Port (default: 8080)">
+                                        <button id="connect-camera" class="btn btn-primary">Connect</button>
+                                    </div>
+                                    <div class="form-text">
+                                        Enter the IP address shown in your IP Webcam app. 
+                                        Default port is 8080 for IP Webcam or 4747 for DroidCam.
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <button id="scan-network" class="btn btn-outline-secondary mb-3">
+                                        <span class="spinner-border spinner-border-sm d-none" id="scan-spinner"></span>
+                                        Scan Network for Cameras
+                                    </button>
+                                    <div id="found-cameras" class="list-group mb-3 d-none">
+                                        <!-- Found cameras will be listed here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">Camera Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="current-camera-url" class="form-label">Current Camera:</label>
+                                <div class="input-group">
+                                    <input type="text" id="current-camera-url" class="form-control" readonly>
+                                    <button id="edit-camera-url" class="btn btn-outline-secondary">Edit</button>
+                                </div>
+                            </div>
+                            <div class="mb-3 d-none" id="camera-url-editor">
+                                <div class="input-group">
+                                    <input type="text" id="edit-url-input" class="form-control" 
+                                           placeholder="e.g., 192.168.1.5:8080">
+                                    <button id="save-url-button" class="btn btn-primary">Save</button>
+                                    <button id="cancel-url-edit" class="btn btn-outline-secondary">Cancel</button>
+                                </div>
+                                <div class="form-text">Enter IP and port without http:// prefix</div>
+                            </div>
+                            <div class="mb-3">
+                                <button id="take-snapshot" class="btn btn-success w-100">Take Snapshot</button>
+                            </div>
+                            <div class="mb-3">
+                                <button id="refresh-connection" class="btn btn-outline-primary w-100">Refresh Connection</button>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Camera Features</label>
+                                <div class="d-grid gap-2">
+                                    <button id="toggle-flash" class="btn btn-outline-warning">Toggle Flash</button>
+                                    <button id="camera-focus" class="btn btn-outline-secondary">Focus Camera</button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="refresh-rate" class="form-label">Refresh Rate (ms):</label>
+                                <div class="input-group">
+                                    <input type="number" id="refresh-rate" class="form-control" min="100" max="10000" step="100" value="500">
+                                    <button id="save-refresh-rate" class="btn btn-outline-primary">Save</button>
+                                </div>
+                                <div class="form-text">
+                                    How often to refresh the camera image (in milliseconds)
+                                </div>
+                            </div>
+                            <!-- Add this after the Current Camera section in the camera settings card -->
+                            <div class="mb-3">
+                                <label class="form-label">Camera Type:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Type:</span>
+                                    <input type="text" id="camera-type" class="form-control" readonly value="Unknown">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movement controls -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Movement Controls</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="d-flex justify-content-center mb-3">
+                                <button id="move-forward" class="btn btn-primary btn-circle">↑</button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button id="turn-left" class="btn btn-primary btn-circle">←</button>
+                                <button id="stop-motors" class="btn btn-danger btn-circle">■</button>
+                                <button id="turn-right" class="btn btn-primary btn-circle">→</button>
+                            </div>
+                            <div class="d-flex justify-content-center mt-3">
+                                <button id="move-backward" class="btn btn-primary btn-circle">↓</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast container -->
+    <div class="toast-container"></div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Check camera status on load
+            checkCameraStatus();
+            
+            // Image error handling for stream
+            $('#stream-image').on('error', function() {
+                $('#connection-error').removeClass('d-none');
+                $('#connection-badge').attr('class', 'badge bg-danger').text('Disconnected');
+            });
+            
+            // Image load success
+            $('#stream-image').on('load', function() {
+                if ($(this).attr('src').includes('/api/camera/stream')) {
+                    $('#connection-error').addClass('d-none');
+                    $('#connection-badge').attr('class', 'badge bg-success').text('Connected');
+                }
+            });
+            
+            // Connect to camera with specified IP/port
+            $('#connect-camera').click(function() {
+                const ip = $('#camera-ip').val();
+                const port = $('#camera-port').val() || '8080';
+                
+                if (!ip) {
+                    showToast('Error', 'Please enter an IP address', 'danger');
+                    return;
+                }
+                
+                $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Connecting...');
+                
+                $.ajax({
+                    url: '/api/camera/connect',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ ip: ip, port: port }),
+                    success: function(data) {
+                        $('#connect-camera').prop('disabled', false).text('Connect');
+                        
+                        if (data.success) {
+                            showToast('Success', 'Connected to camera', 'success');
+                            $('#connection-error').addClass('d-none');
+                            refreshStream();
+                            checkCameraStatus();
+                        } else {
+                            showToast('Error', data.message || 'Failed to connect', 'danger');
+                        }
+                    },
+                    error: function() {
+                        $('#connect-camera').prop('disabled', false).text('Connect');
+                        showToast('Error', 'Connection request failed', 'danger');
+                    }
+                });
+            });
+            
+            // Edit camera URL
+            $('#edit-camera-url').click(function() {
+                const currentUrl = $('#current-camera-url').val();
+                $('#edit-url-input').val(currentUrl);
+                $('#camera-url-editor').removeClass('d-none');
+            });
+            
+            // Cancel editing URL
+            $('#cancel-url-edit').click(function() {
+                $('#camera-url-editor').addClass('d-none');
+            });
+            
+            // Save new camera URL
+            $('#save-url-button').click(function() {
+                const newUrl = $('#edit-url-input').val();
+                
+                if (!newUrl) {
+                    showToast('Error', 'Please enter a valid URL', 'danger');
+                    return;
+                }
+                
+                $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Saving...');
+                
+                // Split URL into IP and port
+                let ip, port;
+                if (newUrl.includes(':')) {
+                    [ip, port] = newUrl.split(':');
+                } else {
+                    ip = newUrl;
+                    port = '8080'; // Default port
+                }
+                
+                $.ajax({
+                    url: '/api/camera/connect',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ ip: ip, port: port }),
+                    success: function(data) {
+                        $('#save-url-button').prop('disabled', false).text('Save');
+                        $('#camera-url-editor').addClass('d-none');
+                        
+                        if (data.success) {
+                            showToast('Success', 'Camera URL updated', 'success');
+                            refreshStream();
+                            checkCameraStatus();
+                        } else {
+                            showToast('Error', data.message || 'Failed to update URL', 'danger');
+                        }
+                    },
+                    error: function() {
+                        $('#save-url-button').prop('disabled', false).text('Save');
+                        showToast('Error', 'Failed to update URL', 'danger');
+                    }
+                });
+            });
+            
+            // Refresh camera
+            $('#refresh-connection').click(function() {
+                $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Refreshing...');
+                refreshStream();
+                checkCameraStatus();
+                setTimeout(() => {
+                    $(this).prop('disabled', false).text('Refresh Connection');
+                }, 1000);
+            });
+            
+            // Take snapshot
+            $('#take-snapshot').click(function() {
+                $(this).prop('disabled', true).html('<span class="spinner-border spinner-border-sm"></span> Capturing...');
+                
+                $.ajax({
+                    url: '/api/camera/snapshot',
+                    type: 'GET',
+                    success: function(data) {
+                        $('#take-snapshot').prop('disabled', false).text('Take Snapshot');
+                        
+                        if (data.success) {
+                            showToast('Success', 'Snapshot saved', 'success');
+                        } else {
+                            showToast('Error', data.error || 'Failed to take snapshot', 'danger');
+                        }
+                    },
+                    error: function() {
+                        $('#take-snapshot').prop('disabled', false).text('Take Snapshot');
+                        showToast('Error', 'Failed to take snapshot', 'danger');
+                    }
+                });
+            });
+            
+            // Scan network for cameras
+            $('#scan-network').click(function() {
+                const button = $(this);
+                button.prop('disabled', true);
+                $('#scan-spinner').removeClass('d-none');
+                
+                // This is a placeholder - would need backend implementation
+                // In a real implementation, you'd call an API endpoint that scans the network
+                setTimeout(function() {
+                    $('#scan-spinner').addClass('d-none');
+                    button.prop('disabled', false);
+                    
+                    // Example found cameras
+                    const foundCameras = [
+                        { ip: '192.168.1.100', port: '8080', name: 'IP Webcam' },
+                        { ip: '192.168.1.101', port: '4747', name: 'DroidCam' }
+                    ];
+                    
+                    if (foundCameras.length > 0) {
+                        const cameraList = $('#found-cameras');
+                        cameraList.empty().removeClass('d-none');
+                        
+                        foundCameras.forEach(camera => {
+                            cameraList.append(`
+                                <button class="list-group-item list-group-item-action camera-option" 
+                                        data-ip="${camera.ip}" data-port="${camera.port}">
+                                    ${camera.name} (${camera.ip}:${camera.port})
+                                </button>
+                            `);
+                        });
+                        
+                        // Attach click handlers
+                        $('.camera-option').click(function() {
+                            const ip = $(this).data('ip');
+                            const port = $(this).data('port');
+                            
+                            $('#camera-ip').val(ip);
+                            $('#camera-port').val(port);
+                            $('#connect-camera').click();
+                        });
+                    } else {
+                        showToast('Info', 'No cameras found on the network', 'info');
+                    }
+                }, 2000);
+            });
+            
+            // Toggle flash
+            $('#toggle-flash').click(function() {
+                const button = $(this);
+                const isFlashOn = button.hasClass('active');
+                
+                button.prop('disabled', true);
+                
+                $.ajax({
+                    url: '/api/camera/flash',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ enabled: !isFlashOn }),
+                    success: function(data) {
+                        button.prop('disabled', false);
+                        
+                        if (data.success) {
+                            if (data.flash === 'on') {
+                                button.addClass('active').text('Turn Flash Off');
+                                showToast('Success', 'Flash turned on', 'success');
+                            } else {
+                                button.removeClass('active').text('Turn Flash On');
+                                showToast('Success', 'Flash turned off', 'success');
+                            }
+                        } else {
+                            showToast('Error', 'Failed to toggle flash', 'danger');
+                        }
+                    },
+                    error: function() {
+                        button.prop('disabled', false);
+                        showToast('Error', 'Failed to toggle flash', 'danger');
+                    }
+                });
+            });
+            
+            // Focus camera
+            $('#camera-focus').click(function() {
+                $(this).prop('disabled', true);
+                
+                $.ajax({
+                    url: '/api/camera/focus',
+                    type: 'POST',
+                    success: function(data) {
+                        $('#camera-focus').prop('disabled', false);
+                        
+                        if (data.success) {
+                            showToast('Success', 'Camera focused', 'success');
+                        } else {
+                            showToast('Error', 'Failed to focus camera', 'danger');
+                        }
+                    },
+                    error: function() {
+                        $('#camera-focus').prop('disabled', false);
+                        showToast('Error', 'Failed to focus camera', 'danger');
+                    }
+                });
+            });
+            
+            // Movement controls
+            $('#move-forward').on('mousedown touchstart', function() { sendMovement('forward'); });
+            $('#move-backward').on('mousedown touchstart', function() { sendMovement('backward'); });
+            $('#turn-left').on('mousedown touchstart', function() { sendMovement('left'); });
+            $('#turn-right').on('mousedown touchstart', function() { sendMovement('right'); });
+            $('#stop-motors').on('click', function() { sendMovement('stop'); });
+            
+            // Stop on mouse up
+            $('.btn-circle').on('mouseup mouseleave touchend touchcancel', function() {
+                sendMovement('stop');
+            });
+            
+            // Load camera settings on page load
+            function loadCameraSettings() {
+    $.ajax({
+        url: '/api/camera/settings',
+        type: 'GET',
+        success: function(data) {
+            if (data.success && data.settings) {
+                const settings = data.settings;
+                
+                // Update camera type indicators
+                $('#camera-type').text(settings.type || 'Unknown');
+                
+                // Update refresh rate if specified
+                if (settings.refresh_rate) {
+                    const refreshRate = parseInt(settings.refresh_rate);
+                    if (refreshRate > 0) {
+                        // Clear existing refresh interval
+                        if (window.streamRefreshInterval) {
+                            clearInterval(window.streamRefreshInterval);
+                        }
+                        
+                        // Set new refresh interval
+                        window.streamRefreshInterval = setInterval(function() {
+                            if ($('#connection-badge').hasClass('bg-success')) {
+                                refreshStream();
+                            }
+                        }, refreshRate);
+                    }
+                }
+                
+                // Set flash button state
+                if (settings.use_flash) {
+                    $('#toggle-flash').addClass('active').text('Turn Flash Off');
+                } else {
+                    $('#toggle-flash').removeClass('active').text('Turn Flash On');
+                }
+            }
+        }
+    });
+}
+
+// Call this when the page loads
+loadCameraSettings();
+
+// Add a function to save camera settings
+function saveCameraSetting(key, value) {
+    const settings = {};
+    settings[key] = value;
+    
+    $.ajax({
+        url: '/api/camera/settings',
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(settings),
+        success: function(data) {
+            if (data.success) {
+                console.log(`Camera setting ${key} updated successfully`);
+            }
+        }
+    });
+}
+
+// Add event listener for refresh rate change
+$('#refresh-rate').on('change', function() {
+    const newRate = $(this).val();
+    if (newRate && !isNaN(newRate)) {
+        // Save new refresh rate setting
+        saveCameraSetting('refresh_rate', newRate);
+        
+        // Update refresh interval
+        if (window.streamRefreshInterval) {
+            clearInterval(window.streamRefreshInterval);
+        }
+        
+        window.streamRefreshInterval = setInterval(function() {
+            if ($('#connection-badge').hasClass('bg-success')) {
+                refreshStream();
+            }
+        }, newRate);
+        
+        showToast('Success', 'Stream refresh rate updated', 'success');
+    }
+});
+
+            // Add this to your document ready function
+            $('#save-refresh-rate').click(function() {
+                const refreshRate = parseInt($('#refresh-rate').val());
+                
+                if (refreshRate < 100) {
+                    showToast('Warning', 'Refresh rate must be at least 100ms', 'warning');
+                    return;
+                }
+                
+                // Save setting
+                saveCameraSetting('refresh_rate', refreshRate);
+                
+                // Update refresh interval
+                if (window.streamRefreshInterval) {
+                    clearInterval(window.streamRefreshInterval);
+                }
+                
+                window.streamRefreshInterval = setInterval(function() {
+                    if ($('#connection-badge').hasClass('bg-success')) {
+                        refreshStream();
+                    }
+                }, refreshRate);
+                
+                showToast('Success', `Refresh rate updated to ${refreshRate}ms`, 'success');
+            });
+            
+            // Check camera status periodically
+            setInterval(checkCameraStatus, 10000); // Every 10 seconds
+            
+            // Refresh stream periodically if connected
+            setInterval(function() {
+                if ($('#connection-badge').hasClass('bg-success')) {
+                    refreshStream();
+                }
+            }, 5000); // Every 5 seconds
+        });
+        
+        // Check camera status
+        function checkCameraStatus() {
+            $.ajax({
+                url: '/api/camera/status',
+                type: 'GET',
+                success: function(data) {
+                    // Update URL display
+                    if (data.url) {
+                        let displayUrl = data.url.replace('http://', '');
+                        $('#current-camera-url').val(displayUrl);
+                    }
+                    
+                    if (data.available) {
+                        $('#connection-error').addClass('d-none');
+                        $('#connection-badge').attr('class', 'badge bg-success').text('Connected');
+                    } else {
+                        $('#connection-error').removeClass('d-none');
+                        $('#connection-badge').attr('class', 'badge bg-danger').text('Disconnected');
+                    }
+                }
+            });
+        }
+        
+        // Refresh stream with a timestamp to prevent caching
+        function refreshStream() {
+            const img = $('#stream-image');
+            const src = img.attr('src');
+            
+            if (src) {
+                const timestamp = new Date().getTime();
+                if (src.indexOf('?') === -1) {
+                    img.attr('src', src + '?t=' + timestamp);
+                } else {
+                    img.attr('src', src.split('?')[0] + '?t=' + timestamp);
+                }
+            }
+        }
+        
+        // Send movement command
+        function sendMovement(direction) {
+            $.ajax({
+                url: '/api/motors/' + direction,
+                type: 'POST',
+                data: JSON.stringify({ speed: 50 }),
+                contentType: 'application/json'
+            });
+        }
+        
+        // Show toast notification
+        function showToast(title, message, type) {
+            const toast = $(`
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-${type} text-white">
+                        <strong class="me-auto">${title}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">${message}</div>
+                </div>
+            `);
+            
+            $('.toast-container').append(toast);
+            
+            const bsToast = new bootstrap.Toast(toast, { delay: 3000 });
+            bsToast.show();
+            
+            toast.on('hidden.bs.toast', function() {
+                $(this).remove();
+            });
+        }
+    </script>
+</body>
+</html>

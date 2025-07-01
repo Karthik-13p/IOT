@@ -1,0 +1,577 @@
+Loaded camera URL from settings: http://100.126.190.41:8080
+Starting GPS monitoring on /dev/ttyS0
+Starting GPS monitoring on /dev/ttyS0 at 9600 baud
+Connected to GPS module at /dev/ttyS0
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://192.168.1.9:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 888-915-756
+192.168.1.5 - - [18/May/2025 18:42:26] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:42:26] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:26] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:26] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:40] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:40] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:40] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:40] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:40] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:40] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:41] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:41] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:41] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:41] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:42] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:42] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:42] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:42] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:43] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:43] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:43] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:43] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:44] "GET / HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:44] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:44] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:44] "GET /camera_stream HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:44] "[36mGET /static/css/dashboard.css HTTP/1.1[0m" 304 -
+192.168.1.5 - - [18/May/2025 18:43:44] "[36mGET /static/js/dashboard.js HTTP/1.1[0m" 304 -
+192.168.1.5 - - [18/May/2025 18:43:44] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:44] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:45] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:45] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:45] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:45] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:46] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:46] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:46] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:46] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:47] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:47] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:47] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:47] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:48] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:48] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:48] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:48] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:49] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:49] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:49] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:49] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:50] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:50] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:50] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:50] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:51] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:51] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:51] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:51] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:52] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:52] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:52] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:52] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:52] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:53] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:53] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:53] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:53] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:53] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:54] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:54] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:54] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:54] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:54] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:55] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:55] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:55] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:55] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:55] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:56] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:56] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:56] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:56] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:56] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:57] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:57] "GET /api/sensors/distance HTTP/1.1" 200 -
+Loaded camera URL from settings: http://100.126.190.41:8080
+Starting GPS monitoring on /dev/ttyS0
+Starting GPS monitoring on /dev/ttyS0 at 9600 baud
+Connected to GPS module at /dev/ttyS0
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Camera connection error: HTTPConnectionPool(host='100.126.190.41', port=8080): Max retries exceeded with url: /shot.jpg (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0xf5e63d30>, 'Connection to 100.126.190.41 timed out. (connect timeout=2)'))
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Error reading distance sensor: Please set pin numbering mode using GPIO.setmode(GPIO.BOARD) or GPIO.setmode(GPIO.BCM)
+Motor control: Command=start, Speed=50
+Stopping all motors
+Motors cleanup complete
+Setting up motor pins...
+Motor 1 PWM initialized on pin 12
+Motor 2 PWM initialized on pin 13
+Motor 3 PWM initialized on pin 19
+Motor 4 PWM initialized on pin 26
+Motors initialized with PWM frequency 1000 Hz
+Motor 1 - Setting speed 0 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Stop: IN1=LOW, IN2=LOW
+Motor 1 - Setting PWM duty cycle to 0%
+Motor 2 - Setting speed 0 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Stop: IN1=LOW, IN2=LOW
+Motor 2 - Setting PWM duty cycle to 0%
+Motor 3 - Setting speed 0 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Stop: IN1=LOW, IN2=LOW
+Motor 3 - Setting PWM duty cycle to 0%
+Motor 4 - Setting speed 0 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Stop: IN1=LOW, IN2=LOW
+Motor 4 - Setting PWM duty cycle to 0%
+Motors stopped
+Motors started
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Motor control: Command=forward, Speed=50
+Moving forward at speed 50
+Motor 1 - Setting speed 50 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Forward: IN1=HIGH, IN2=LOW
+Motor 1 - Setting PWM duty cycle to 50%
+Motor 3 - Setting speed 50 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Forward: IN1=HIGH, IN2=LOW
+Motor 3 - Setting PWM duty cycle to 50%
+Motor 2 - Setting speed 50 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Forward: IN1=HIGH, IN2=LOW
+Motor 2 - Setting PWM duty cycle to 50%
+Motor 4 - Setting speed 50 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Forward: IN1=HIGH, IN2=LOW
+Motor 4 - Setting PWM duty cycle to 50%
+Moving forward at speed 50, result: True
+Moving forward at speed 50, result: True
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Motor control: Command=forward, Speed=50
+Moving forward at speed 50
+Motor 1 - Setting speed 50 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Forward: IN1=HIGH, IN2=LOW
+Motor 1 - Setting PWM duty cycle to 50%
+Motor 3 - Setting speed 50 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Forward: IN1=HIGH, IN2=LOW
+Motor 3 - Setting PWM duty cycle to 50%
+Motor 2 - Setting speed 50 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Forward: IN1=HIGH, IN2=LOW
+Motor 2 - Setting PWM duty cycle to 50%
+Motor 4 - Setting speed 50 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Forward: IN1=HIGH, IN2=LOW
+Motor 4 - Setting PWM duty cycle to 50%
+Moving forward at speed 50, result: True
+Moving forward at speed 50, result: True
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Motor control: Command=forward, Speed=50
+Moving forward at speed 50
+Motor 1 - Setting speed 50 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Forward: IN1=HIGH, IN2=LOW
+Motor 1 - Setting PWM duty cycle to 50%
+Motor 3 - Setting speed 50 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Forward: IN1=HIGH, IN2=LOW
+Motor 3 - Setting PWM duty cycle to 50%
+Motor 2 - Setting speed 50 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Forward: IN1=HIGH, IN2=LOW
+Motor 2 - Setting PWM duty cycle to 50%
+Motor 4 - Setting speed 50 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Forward: IN1=HIGH, IN2=LOW
+Motor 4 - Setting PWM duty cycle to 50%
+Moving forward at speed 50, result: True
+Moving forward at speed 50, result: True
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Motor control: Command=forward, Speed=50
+Moving forward at speed 50
+Motor 1 - Setting speed 50 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Forward: IN1=HIGH, IN2=LOW
+Motor 1 - Setting PWM duty cycle to 50%
+Motor 3 - Setting speed 50 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Forward: IN1=HIGH, IN2=LOW
+Motor 3 - Setting PWM duty cycle to 50%
+Motor 2 - Setting speed 50 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Forward: IN1=HIGH, IN2=LOW
+Motor 2 - Setting PWM duty cycle to 50%
+Motor 4 - Setting speed 50 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Forward: IN1=HIGH, IN2=LOW
+Motor 4 - Setting PWM duty cycle to 50%
+Moving forward at speed 50, result: True
+Moving forward at speed 50, result: True
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+192.168.1.5 - - [18/May/2025 18:43:57] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:57] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:57] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:58] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:58] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:58] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:58] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:59] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:59] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:59] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:59] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:43:59] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:00] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:00] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:00] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:00] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:00] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:01] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:01] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:01] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:01] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:02] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:02] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:02] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:02] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:03] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:03] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:03] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:03] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:04] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:04] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:04] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:04] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:05] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:05] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:05] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:05] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:06] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:06] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:06] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:06] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:07] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:07] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:07] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:07] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:07] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:08] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:08] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:08] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:08] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:09] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:09] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:09] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:09] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:09] "POST /api/motors/control HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:10] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:10] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:10] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:10] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:11] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:11] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:11] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:11] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:12] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:12] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:12] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:12] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:13] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:13] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:13] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:13] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:14] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:14] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:14] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:14] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:15] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:15] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:15] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:15] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:16] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:16] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:16] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:16] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:17] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:17] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:17] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:17] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:18] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:18] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:18] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:18] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:19] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:19] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:19] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:19] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:20] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:20] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:20] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:20] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:21] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:21] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:21] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:21] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:22] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:22] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:22] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:22] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:23] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:23] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:23] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:23] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:24] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:24] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:24] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:24] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:25] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:25] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:25] "GET /api/motors/status HTTP/1.1" 200 -
+Motor control: Command=forward, Speed=50
+Moving forward at speed 50
+Motor 1 - Setting speed 50 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Forward: IN1=HIGH, IN2=LOW
+Motor 1 - Setting PWM duty cycle to 50%
+Motor 3 - Setting speed 50 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Forward: IN1=HIGH, IN2=LOW
+Motor 3 - Setting PWM duty cycle to 50%
+Motor 2 - Setting speed 50 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Forward: IN1=HIGH, IN2=LOW
+Motor 2 - Setting PWM duty cycle to 50%
+Motor 4 - Setting speed 50 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Forward: IN1=HIGH, IN2=LOW
+Motor 4 - Setting PWM duty cycle to 50%
+Moving forward at speed 50, result: True
+Moving forward at speed 50, result: True
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Motor control: Command=backward, Speed=50
+Moving backward at speed 50
+Setting left motor 1 backward: speed=-50
+Motor 1 - Setting speed -50 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Backward: IN1=LOW, IN2=HIGH
+Motor 1 - Setting PWM duty cycle to 50%
+Setting left motor 3 backward: speed=-50
+Motor 3 - Setting speed -50 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Backward: IN1=LOW, IN2=HIGH
+Motor 3 - Setting PWM duty cycle to 50%
+Setting right motor 2 backward: speed=-50
+Motor 2 - Setting speed -50 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Backward: IN1=LOW, IN2=HIGH
+Motor 2 - Setting PWM duty cycle to 50%
+Setting right motor 4 backward: speed=-50
+Motor 4 - Setting speed -50 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Backward: IN1=LOW, IN2=HIGH
+Motor 4 - Setting PWM duty cycle to 50%
+Moving backward with result: True
+Moving backward at speed 50, result: True
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Motor control: Command=backward, Speed=50
+Moving backward at speed 50
+Setting left motor 1 backward: speed=-50
+Motor 1 - Setting speed -50 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Backward: IN1=LOW, IN2=HIGH
+Motor 1 - Setting PWM duty cycle to 50%
+Setting left motor 3 backward: speed=-50
+Motor 3 - Setting speed -50 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Backward: IN1=LOW, IN2=HIGH
+Motor 3 - Setting PWM duty cycle to 50%
+Setting right motor 2 backward: speed=-50
+Motor 2 - Setting speed -50 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Backward: IN1=LOW, IN2=HIGH
+Motor 2 - Setting PWM duty cycle to 50%
+Setting right motor 4 backward: speed=-50
+Motor 4 - Setting speed -50 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Backward: IN1=LOW, IN2=HIGH
+Motor 4 - Setting PWM duty cycle to 50%
+Moving backward with result: True
+Moving backward at speed 50, result: True
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Motor control: Command=stop, Speed=50
+Stopping all motors
+Motor 1 - Setting speed 0 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Stop: IN1=LOW, IN2=LOW
+Motor 1 - Setting PWM duty cycle to 0%
+Motor 2 - Setting speed 0 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Stop: IN1=LOW, IN2=LOW
+Motor 2 - Setting PWM duty cycle to 0%
+Motor 3 - Setting speed 0 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Stop: IN1=LOW, IN2=LOW
+Motor 3 - Setting PWM duty cycle to 0%
+Motor 4 - Setting speed 0 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Stop: IN1=LOW, IN2=LOW
+Motor 4 - Setting PWM duty cycle to 0%
+Motors stopped
+Motors stopped
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Motor control: Command=start, Speed=50
+Stopping all motors
+Motor 1 - Setting speed 0 on pins: PWM=12, IN1=23, IN2=24
+Motor 1 - Stop: IN1=LOW, IN2=LOW
+Motor 1 - Setting PWM duty cycle to 0%
+Motor 2 - Setting speed 0 on pins: PWM=13, IN1=27, IN2=22
+Motor 2 - Stop: IN1=LOW, IN2=LOW
+Motor 2 - Setting PWM duty cycle to 0%
+Motor 3 - Setting speed 0 on pins: PWM=19, IN1=5, IN2=6
+Motor 3 - Stop: IN1=LOW, IN2=LOW
+Motor 3 - Setting PWM duty cycle to 0%
+Motor 4 - Setting speed 0 on pins: PWM=26, IN1=16, IN2=20
+Motor 4 - Stop: IN1=LOW, IN2=LOW
+Motor 4 - Setting PWM duty cycle to 0%
+Motors stopped
+Motors started
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+Error reading distance sensor: The GPIO channel has not been set up as an OUTPUT
+192.168.1.5 - - [18/May/2025 18:44:25] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:26] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:26] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:26] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:26] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:27] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:27] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:27] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:27] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:28] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:28] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:28] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:28] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:29] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:29] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:29] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:29] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:30] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:30] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:30] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:30] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:31] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:31] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:31] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:31] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:32] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:32] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:32] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:32] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:33] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:33] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:33] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:33] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:34] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:34] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:34] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:34] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:35] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:35] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:35] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:35] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:36] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:36] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:36] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:36] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:37] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:37] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:37] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:37] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:38] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:38] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:38] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:38] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:39] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:39] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:39] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:39] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:40] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:40] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:40] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:40] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:41] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:41] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:41] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:41] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:42] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:42] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:42] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:42] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:43] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:43] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:43] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:43] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:44] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:44] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:44] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:44] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:45] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:45] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:45] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:45] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:46] "GET /api/motors/status HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:46] "GET /api/sensors/distance HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:46] "GET /api/camera/check HTTP/1.1" 200 -
+192.168.1.5 - - [18/May/2025 18:44:46] "GET /api/camera/check HTTP/1.1" 200 -
